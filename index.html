@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AustinstayerFX - Under Maintenance</title>
+  <meta name="description" content="AustinstayerFX is currently under scheduled maintenance. We'll be back online Monday. Contact support via WhatsApp." />
+  <meta name="author" content="kingpee263" />
+  <meta property="og:title" content="AustinstayerFX - Under Maintenance" />
+  <meta property="og:description" content="Our trading platform is undergoing scheduled maintenance. Expected return: Monday." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --background: hsl(228, 60%, 6%);
+      --foreground: hsl(210, 40%, 98%);
+      --card: hsl(228, 55%, 10%);
+      --card-foreground: hsl(210, 40%, 98%);
+      --primary: hsl(217, 91%, 60%);
+      --primary-foreground: hsl(210, 40%, 98%);
+      --muted: hsl(228, 45%, 20%);
+      --muted-foreground: hsl(215, 20%, 65%);
+      --border: hsl(228, 40%, 20%);
+      --gradient-primary: linear-gradient(135deg, hsl(217, 91%, 60%) 0%, hsl(228, 80%, 45%) 100%);
+      --gradient-card: linear-gradient(180deg, hsl(228, 55%, 12%) 0%, hsl(228, 60%, 8%) 100%);
+      --glow-primary: 0 0 60px hsla(217, 91%, 60%, 0.3);
+      --shadow-card: 0 25px 50px -12px hsla(228, 60%, 3%, 0.8);
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--background);
+      color: var(--foreground);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+      position: relative;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Background effects */
+    .bg-effect {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .bg-blob {
+      position: absolute;
+      width: 24rem;
+      height: 24rem;
+      border-radius: 50%;
+      filter: blur(64px);
+    }
+
+    .bg-blob-1 {
+      top: 25%;
+      left: 25%;
+      background-color: hsla(217, 91%, 60%, 0.1);
+    }
+
+    .bg-blob-2 {
+      bottom: 25%;
+      right: 25%;
+      background-color: hsla(217, 91%, 60%, 0.05);
+    }
+
+    /* Main container */
+    .container {
+      position: relative;
+      z-index: 10;
+      max-width: 42rem;
+      width: 100%;
+      text-align: center;
+    }
+
+    /* Logo */
+    .logo-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 2rem;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .logo {
+      width: 8rem;
+      height: 8rem;
+      object-fit: contain;
+      border-radius: 1rem;
+      box-shadow: var(--glow-primary);
+    }
+
+    @media (min-width: 768px) {
+      .logo {
+        width: 10rem;
+        height: 10rem;
+      }
+    }
+
+    /* Maintenance icon */
+    .icon-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+
+    .icon-wrapper {
+      background: var(--gradient-primary);
+      padding: 1rem;
+      border-radius: 50%;
+      box-shadow: var(--glow-primary);
+    }
+
+    .settings-icon {
+      width: 2rem;
+      height: 2rem;
+      color: var(--foreground);
+      animation: spin 3s linear infinite;
+    }
+
+    /* Text content */
+    .content {
+      margin-bottom: 2rem;
+    }
+
+    .title {
+      font-size: 1.875rem;
+      font-weight: 700;
+      color: var(--foreground);
+      margin-bottom: 1rem;
+    }
+
+    @media (min-width: 768px) {
+      .title {
+        font-size: 3rem;
+      }
+    }
+
+    .description {
+      font-size: 1.125rem;
+      color: var(--muted-foreground);
+      max-width: 32rem;
+      margin: 0 auto;
+      line-height: 1.75;
+    }
+
+    @media (min-width: 768px) {
+      .description {
+        font-size: 1.25rem;
+      }
+    }
+
+    .highlight {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    /* Countdown section */
+    .countdown-section {
+      padding: 1.5rem 0;
+      margin-bottom: 2rem;
+    }
+
+    .countdown-label {
+      color: var(--muted-foreground);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 1.5rem;
+      font-weight: 500;
+    }
+
+    .countdown {
+      display: flex;
+      gap: 0.75rem;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    @media (min-width: 768px) {
+      .countdown {
+        gap: 1.5rem;
+      }
+    }
+
+    .time-block {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .time-value-container {
+      background: var(--gradient-card);
+      border: 1px solid var(--border);
+      border-radius: 0.75rem;
+      padding: 1rem;
+      min-width: 70px;
+      box-shadow: var(--shadow-card);
+    }
+
+    @media (min-width: 768px) {
+      .time-value-container {
+        padding: 1.5rem;
+        min-width: 90px;
+      }
+    }
+
+    .time-value {
+      font-size: 1.875rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    @media (min-width: 768px) {
+      .time-value {
+        font-size: 3rem;
+      }
+    }
+
+    .time-label {
+      color: var(--muted-foreground);
+      font-size: 0.75rem;
+      margin-top: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 500;
+    }
+
+    @media (min-width: 768px) {
+      .time-label {
+        font-size: 0.875rem;
+      }
+    }
+
+    .separator {
+      color: var(--primary);
+      font-size: 1.5rem;
+      font-weight: 300;
+      margin-top: 1.5rem;
+    }
+
+    @media (min-width: 768px) {
+      .separator {
+        font-size: 2.25rem;
+      }
+    }
+
+    /* Contact button */
+    .contact-section {
+      padding-top: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .contact-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: var(--gradient-primary);
+      color: var(--foreground);
+      font-weight: 600;
+      padding: 1rem 2rem;
+      border-radius: 0.75rem;
+      font-size: 1.125rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: var(--glow-primary);
+    }
+
+    .contact-button:hover {
+      transform: scale(1.05);
+      box-shadow: var(--glow-primary), 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+    }
+
+    .contact-button svg {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+
+    .whatsapp-number {
+      color: var(--muted-foreground);
+      font-size: 0.875rem;
+      margin-top: 0.75rem;
+    }
+
+    /* Footer */
+    .footer {
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      margin-top: 2rem;
+    }
+
+    .developer {
+      color: var(--muted-foreground);
+      font-size: 0.875rem;
+    }
+
+    .developer-name {
+      color: var(--primary);
+      font-weight: 500;
+    }
+
+    .copyright {
+      color: hsla(215, 20%, 65%, 0.6);
+      font-size: 0.75rem;
+      margin-top: 0.5rem;
+    }
+
+    /* Animations */
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    @keyframes spin {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Background effects -->
+  <div class="bg-effect">
+    <div class="bg-blob bg-blob-1"></div>
+    <div class="bg-blob bg-blob-2"></div>
+  </div>
+
+  <div class="container">
+    <!-- Logo -->
+    <div class="logo-container">
+      <img src="logo.jpg" alt="AustinstayerFX Logo" class="logo" />
+    </div>
+
+    <!-- Maintenance Icon -->
+    <div class="icon-container">
+      <div class="icon-wrapper">
+        <svg class="settings-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/>
+          <circle cx="12" cy="12" r="3"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Maintenance Message -->
+    <div class="content">
+      <h1 class="title">We're Under Maintenance</h1>
+      <p class="description">
+        Our platform is currently undergoing scheduled maintenance to enhance your trading experience. We'll be back online on <span class="highlight">Monday</span>.
+      </p>
+    </div>
+
+    <!-- Countdown Timer -->
+    <div class="countdown-section">
+      <p class="countdown-label">Expected Return Time</p>
+      <div class="countdown">
+        <div class="time-block">
+          <div class="time-value-container">
+            <span class="time-value" id="days">00</span>
+          </div>
+          <span class="time-label">Days</span>
+        </div>
+        <span class="separator">:</span>
+        <div class="time-block">
+          <div class="time-value-container">
+            <span class="time-value" id="hours">00</span>
+          </div>
+          <span class="time-label">Hours</span>
+        </div>
+        <span class="separator">:</span>
+        <div class="time-block">
+          <div class="time-value-container">
+            <span class="time-value" id="minutes">00</span>
+          </div>
+          <span class="time-label">Minutes</span>
+        </div>
+        <span class="separator">:</span>
+        <div class="time-block">
+          <div class="time-value-container">
+            <span class="time-value" id="seconds">00</span>
+          </div>
+          <span class="time-label">Seconds</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact Support Button -->
+    <div class="contact-section">
+      <a href="https://wa.me/236784675105?text=Hello%20AustinstayerFX%20Support%2C%20I%20need%20assistance." target="_blank" rel="noopener noreferrer" class="contact-button">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/>
+        </svg>
+        Contact Support
+      </a>
+      <p class="whatsapp-number">WhatsApp: +236 784 675 105</p>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <p class="developer">Developed by <span class="developer-name">kingpee263</span></p>
+      <p class="copyright">© <span id="year"></span> AustinstayerFX. All rights reserved.</p>
+    </div>
+  </div>
+
+  <script>
+    // Set current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Countdown Timer
+    function getNextMonday() {
+      const now = new Date();
+      const dayOfWeek = now.getDay();
+      const daysUntilMonday = dayOfWeek === 0 ? 1 : (8 - dayOfWeek) % 7 || 7;
+      const nextMonday = new Date(now);
+      nextMonday.setDate(now.getDate() + daysUntilMonday);
+      nextMonday.setHours(9, 0, 0, 0);
+      return nextMonday;
+    }
+
+    const targetDate = getNextMonday();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const difference = targetDate.getTime() - now;
+
+      if (difference > 0) {
+        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+        document.getElementById('days').textContent = days.toString().padStart(2, '0');
+        document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+        document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+        document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+      }
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
+</body>
+</html>
